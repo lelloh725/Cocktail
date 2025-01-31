@@ -13,7 +13,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
         people: people
     };
 
-    fetch('http://localhost:5000/api/booking', {
+    fetch('f{BASE_URL}/api/booking', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
 
 // Funzione per caricare tutte le prenotazioni esistenti
 function loadBookings() {
-    fetch('http://localhost:5000/api/booking')
+    fetch('f{BASE_URL}/api/booking')
         .then(response => response.json())
         .then(data => {
             const bookingList = document.getElementById('bookingList');
@@ -64,7 +64,7 @@ function editBooking(id) {
 
     const updatedBooking = { time, people, date };
 
-    fetch(`http://localhost:5000/api/booking/${id}`, {
+    fetch(`f{BASE_URL}/api/booking/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ function editBooking(id) {
 // Funzione per cancellare una prenotazione
 function cancelBooking(id) {
     if (confirm('Sei sicuro di voler cancellare questa prenotazione?')) {
-        fetch(`http://localhost:5000/api/booking/${id}`, {
+        fetch(`f{BASE_URL}/api/booking/${id}`, {
             method: 'DELETE',
         })
         .then(response => response.json())
