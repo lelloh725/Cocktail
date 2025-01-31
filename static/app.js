@@ -13,7 +13,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
         people: people
     };
 
-    fetch('f{BASE_URL}/api/booking', {
+    fetch('https://cocktail-tx6s.onrender.com/api/booking', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
 
 // Funzione per caricare tutte le prenotazioni esistenti
 function loadBookings() {
-    fetch('f{BASE_URL}/api/booking')
+    fetch('https://cocktail-tx6s.onrender.com/api/booking')
         .then(response => response.json())
         .then(data => {
             const bookingList = document.getElementById('bookingList');
@@ -64,7 +64,7 @@ function editBooking(id) {
 
     const updatedBooking = { time, people, date };
 
-    fetch(`f{BASE_URL}/api/booking/${id}`, {
+    fetch(`https://cocktail-tx6s.onrender.com/api/booking/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ function editBooking(id) {
 // Funzione per cancellare una prenotazione
 function cancelBooking(id) {
     if (confirm('Sei sicuro di voler cancellare questa prenotazione?')) {
-        fetch(`f{BASE_URL}/api/booking/${id}`, {
+        fetch(`https://cocktail-tx6s.onrender.com/api/booking/${id}`, {
             method: 'DELETE',
         })
         .then(response => response.json())
