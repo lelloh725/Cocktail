@@ -80,7 +80,7 @@
 <body>
     <div class="container my-5">
         <!-- Intestazione con immagine -->
-        <img src="img/Logo.jpg" alt="Cocktailbar" class="header-image"> <!-- Sostituisci con il percorso della tua immagine -->
+       <img src="{{ url_for('static', filename='img/Logo.jpg') }}" alt="Cocktailbar" class="header-image"> <!-- Sostituisci con il percorso della tua immagine -->
 
         <!-- Titolo -->
         <h1 class="text-center mb-4">Prenota il tuo tavolo al Cocktailbar</h1>
