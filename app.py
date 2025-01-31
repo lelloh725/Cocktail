@@ -128,3 +128,4 @@ if __name__ == '__main__':
     # Usa la variabile d'ambiente PORT che viene passata da Render
     port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
     app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
