@@ -1,9 +1,11 @@
 import sqlite3
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
+def home():
+    return render_template('index.html')
 
 from flask_cors import CORS
 CORS(app, resources={r"/api/*": {"origins": "*"}})
