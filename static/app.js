@@ -13,7 +13,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
         people: people
     };
 
-    fetch('https://cocktail-5ua2.onrender.com/api/booking', {
+    fetch('http://localhost:5000/api/booking', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
 
 // Funzione per caricare tutte le prenotazioni esistenti
 function loadBookings() {
-    fetch('https://cocktail-5ua2.onrender.com/api/booking')
+    fetch('http://localhost:5000/api/booking')
         .then(response => response.json())
         .then(data => {
             const bookingList = document.getElementById('bookingList');
@@ -64,7 +64,7 @@ function editBooking(id) {
 
     const updatedBooking = { time, people, date };
 
-    fetch(`https://cocktail-5ua2.onrender.com/api/booking/${id}`, {
+    fetch(`http://localhost:5000/api/booking/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ function editBooking(id) {
 // Funzione per cancellare una prenotazione
 function cancelBooking(id) {
     if (confirm('Sei sicuro di voler cancellare questa prenotazione?')) {
-        fetch(`https://cocktail-5ua2.onrender.com/api/booking/${id}`, {
+        fetch(`http://localhost:5000/api/booking/${id}`, {
             method: 'DELETE',
         })
         .then(response => response.json())
