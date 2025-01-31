@@ -122,6 +122,6 @@ def cancel_booking(id):
     return jsonify({'message': 'Prenotazione cancellata con successo!'}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    port = int(os.environ.get("PORT", 5000))  # Default a 5000 se non trovata
+    # Usa la variabile d'ambiente PORT che viene passata da Render
+    port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
     app.run(host='0.0.0.0', port=port)
