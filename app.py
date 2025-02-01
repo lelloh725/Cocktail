@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+print("Registered Routes:")
+for rule in app.url_map.iter_rules():
+    print(rule)
+
 from flask_cors import CORS
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -130,6 +134,4 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
 
-print("Registered Routes:")
-for rule in app.url_map.iter_rules():
-    print(rule)
+
