@@ -4,6 +4,12 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
+from flask_cors import CORS
+#CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})*
+
+app = Flask(__name__)
+CORS(app)  # Abilita CORS per tutte le rotte
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -22,11 +28,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
 
-from flask_cors import CORS
-#CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})*
 
-app = Flask(__name__)
-CORS(app)  # Abilita CORS per tutte le rotte
 
 # Funzione per connettersi al database SQLite
 def get_db_connection():
