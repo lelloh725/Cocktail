@@ -3,9 +3,10 @@ import os
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
+# Creazione dell'app Flask
 app = Flask(__name__)
 
-# Abilita CORS per tutte le rotte
+# Abilita CORS per tutte le rotte (questo deve venire dopo la creazione dell'app)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
