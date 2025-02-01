@@ -3,12 +3,13 @@ import os
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
+CORS(app)  # Abilita CORS per tutte le rotte
 
 from flask_cors import CORS
 #CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})*
 
-app = Flask(__name__)
-CORS(app)  # Abilita CORS per tutte le rotte
+#app = Flask(__name__)
+#CORS(app)  # Abilita CORS per tutte le rotte
 
 @app.route('/')
 def home():
@@ -25,8 +26,8 @@ for rule in app.url_map.iter_rules():
 if __name__ == '__main__':
     # Usa la variabile d'ambiente PORT che viene passata da Render
     port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
-    app.run(host='0.0.0.0', port=port)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
+    
 
 
 
@@ -56,7 +57,7 @@ def create_table():
 create_table()
 
 # API per prenotare un tavolo
-@app.route('https://cocktail-tx6s.onrender.com/api/booking', methods=['POST'])
+@app.route('/api/booking', methods=['POST'])
 def create_booking():
     data = request.get_json()
 
@@ -81,7 +82,7 @@ def create_booking():
     return jsonify({'message': 'Prenotazione effettuata con successo!'}), 200
 
 # API per ottenere tutte le prenotazioni
-@app.route('https://cocktail-tx6s.onrender.com/api/booking', methods=['GET'])
+@app.route('api/booking', methods=['GET'])
 def get_bookings():
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -92,7 +93,7 @@ def get_bookings():
     return jsonify([dict(booking) for booking in bookings]), 200
 
 # API per aggiornare una prenotazione
-@app.route('https://cocktail-tx6s.onrender.com/api/booking/<int:id>', methods=['PUT'])
+@app.route('api/booking/<int:id>', methods=['PUT'])
 def update_booking(id):
     data = request.get_json()
 
@@ -123,7 +124,7 @@ def update_booking(id):
     return jsonify({'message': 'Prenotazione aggiornata con successo!'}), 200
 
 # API per cancellare una prenotazione
-@app.route('https://cocktail-tx6s.onrender.com/api/booking/<int:id>', methods=['DELETE'])
+@app.route('api/booking/<int:id>', methods=['DELETE'])
 def cancel_booking(id):
     conn = get_db_connection()
     cursor = conn.cursor()
