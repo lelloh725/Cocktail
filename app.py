@@ -23,7 +23,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 from flask_cors import CORS
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})
 
 app = Flask(__name__)
 CORS(app)  # Abilita CORS per tutte le rotte
@@ -54,7 +54,7 @@ def create_table():
 create_table()
 
 # API per prenotare un tavolo
-@app.route('/api/booking', methods=['POST'])
+@app.route('https://cocktail-tx6s.onrender.com/api/booking', methods=['POST'])
 def create_booking():
     data = request.get_json()
 
@@ -79,7 +79,7 @@ def create_booking():
     return jsonify({'message': 'Prenotazione effettuata con successo!'}), 200
 
 # API per ottenere tutte le prenotazioni
-@app.route('/api/booking', methods=['GET'])
+@app.route('https://cocktail-tx6s.onrender.com/api/booking', methods=['GET'])
 def get_bookings():
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -90,7 +90,7 @@ def get_bookings():
     return jsonify([dict(booking) for booking in bookings]), 200
 
 # API per aggiornare una prenotazione
-@app.route('/api/booking/<int:id>', methods=['PUT'])
+@app.route('https://cocktail-tx6s.onrender.com/api/booking/<int:id>', methods=['PUT'])
 def update_booking(id):
     data = request.get_json()
 
@@ -121,7 +121,7 @@ def update_booking(id):
     return jsonify({'message': 'Prenotazione aggiornata con successo!'}), 200
 
 # API per cancellare una prenotazione
-@app.route('/api/booking/<int:id>', methods=['DELETE'])
+@app.route('https://cocktail-tx6s.onrender.com/api/booking/<int:id>', methods=['DELETE'])
 def cancel_booking(id):
     conn = get_db_connection()
     cursor = conn.cursor()
