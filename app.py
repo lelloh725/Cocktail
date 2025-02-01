@@ -23,7 +23,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 from flask_cors import CORS
-CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})
+#CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})*
 
 app = Flask(__name__)
 CORS(app)  # Abilita CORS per tutte le rotte
