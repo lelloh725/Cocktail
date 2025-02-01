@@ -1,12 +1,11 @@
 import sqlite3
 import os
 from flask import Flask, request, jsonify, render_template
-
 from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Ora CORS è abilitato dopo che l'app è stata creata
+# Abilita CORS per tutte le rotte
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
@@ -51,7 +50,7 @@ def create_table():
 # Creiamo la tabella all'avvio del server
 create_table()
 
-# API per prenotare un tavolo
+# API per prenotare un tavolo (POST)
 @app.route('/api/booking', methods=['POST'])
 def create_booking():
     data = request.get_json()
@@ -76,7 +75,7 @@ def create_booking():
 
     return jsonify({'message': 'Prenotazione effettuata con successo!'}), 200
 
-# API per ottenere tutte le prenotazioni
+# API per ottenere tutte le prenotazioni (GET)
 @app.route('/api/booking', methods=['GET'])
 def get_bookings():
     conn = get_db_connection()
@@ -87,7 +86,7 @@ def get_bookings():
 
     return jsonify([dict(booking) for booking in bookings]), 200
 
-# API per aggiornare una prenotazione
+# API per aggiornare una prenotazione (PUT)
 @app.route('/api/booking/<int:id>', methods=['PUT'])
 def update_booking(id):
     data = request.get_json()
@@ -118,7 +117,7 @@ def update_booking(id):
 
     return jsonify({'message': 'Prenotazione aggiornata con successo!'}), 200
 
-# API per cancellare una prenotazione
+# API per cancellare una prenotazione (DELETE)
 @app.route('/api/booking/<int:id>', methods=['DELETE'])
 def cancel_booking(id):
     conn = get_db_connection()
