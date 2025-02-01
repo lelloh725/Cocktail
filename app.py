@@ -2,11 +2,11 @@ import sqlite3
 import os
 from flask import Flask, request, jsonify, render_template
 
+from flask_cors import CORS
+CORS(app, resources={r"api/*": {"origins": "*"}})*
+
 app = Flask(__name__)
 CORS(app)  # Abilita CORS per tutte le rotte
-
-from flask_cors import CORS
-#CORS(app, resources={r"https://cocktail-tx6s.onrender.com/api/*": {"origins": "*"}})*
 
 #app = Flask(__name__)
 #CORS(app)  # Abilita CORS per tutte le rotte
