@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/test')
+def test():
+    return "Test Route"
+
 print("Registered Routes:")
 for rule in app.url_map.iter_rules():
     print(rule)
