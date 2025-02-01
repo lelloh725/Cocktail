@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prenotazione Cocktailbar</title>
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     
     <!-- Stili personalizzati -->
     <style>
@@ -117,8 +117,8 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="js/bootstrap.js"></script>
-    <script src="app.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 
     
 </body>
