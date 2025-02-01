@@ -129,3 +129,7 @@ if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
     app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
+
+print("Registered Routes:")
+for rule in app.url_map.iter_rules():
+    print(rule)
