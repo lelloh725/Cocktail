@@ -13,13 +13,13 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
         people: people
     };
 
-    fetch('/api/booking', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingData)
-    })
+    fetch('https://cocktail-tx6s.onrender.com/api/booking', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(bookingData)
+})
     .then(response => response.json())
     .then(data => {
         if (data.message) {
@@ -37,7 +37,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
 
 // Funzione per caricare tutte le prenotazioni esistenti
 function loadBookings() {
-    fetch('/api/booking')
+    fetch('https://cocktail-tx6s.onrender.com/api/booking')
         .then(response => response.json())
         .then(data => {
             const bookingList = document.getElementById('bookingList');
