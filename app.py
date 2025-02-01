@@ -16,6 +16,12 @@ print("Registered Routes:")
 for rule in app.url_map.iter_rules():
     print(rule)
 
+if __name__ == '__main__':
+    # Usa la variabile d'ambiente PORT che viene passata da Render
+    port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
+    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
+
 from flask_cors import CORS
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -132,10 +138,6 @@ def cancel_booking(id):
 
     return jsonify({'message': 'Prenotazione cancellata con successo!'}), 200
 
-if __name__ == '__main__':
-    # Usa la variabile d'ambiente PORT che viene passata da Render
-    port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
-    app.run(host='0.0.0.0', port=port)
-    app.run(debug=True)
+
 
 
