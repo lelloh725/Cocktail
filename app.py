@@ -3,13 +3,11 @@ import os
 from flask import Flask, request, jsonify, render_template
 
 from flask_cors import CORS
-CORS(app, resources={r"api/*": {"origins": "*"}})
 
 app = Flask(__name__)
-CORS(app)  # Abilita CORS per tutte le rotte
 
-#app = Flask(__name__)
-#CORS(app)  # Abilita CORS per tutte le rotte
+# Ora CORS è abilitato dopo che l'app è stata creata
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def home():
@@ -27,9 +25,6 @@ if __name__ == '__main__':
     # Usa la variabile d'ambiente PORT che viene passata da Render
     port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
     app.run(host='0.0.0.0', port=port, debug=True)
-    
-
-
 
 # Funzione per connettersi al database SQLite
 def get_db_connection():
@@ -82,7 +77,7 @@ def create_booking():
     return jsonify({'message': 'Prenotazione effettuata con successo!'}), 200
 
 # API per ottenere tutte le prenotazioni
-@app.route('api/booking', methods=['GET'])
+@app.route('/api/booking', methods=['GET'])
 def get_bookings():
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -93,7 +88,7 @@ def get_bookings():
     return jsonify([dict(booking) for booking in bookings]), 200
 
 # API per aggiornare una prenotazione
-@app.route('api/booking/<int:id>', methods=['PUT'])
+@app.route('/api/booking/<int:id>', methods=['PUT'])
 def update_booking(id):
     data = request.get_json()
 
@@ -124,7 +119,7 @@ def update_booking(id):
     return jsonify({'message': 'Prenotazione aggiornata con successo!'}), 200
 
 # API per cancellare una prenotazione
-@app.route('api/booking/<int:id>', methods=['DELETE'])
+@app.route('/api/booking/<int:id>', methods=['DELETE'])
 def cancel_booking(id):
     conn = get_db_connection()
     cursor = conn.cursor()
