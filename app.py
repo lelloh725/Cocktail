@@ -13,6 +13,10 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 def home():
     return render_template('index.html')
 
+@app.route('/api/test', methods=['GET'])
+def test_api():
+    return jsonify({"message": "API funziona!"})
+
 @app.route('/test')
 def test():
     return "Test Route"
