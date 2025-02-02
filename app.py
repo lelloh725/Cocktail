@@ -25,6 +25,9 @@ print("Registered Routes:")
 for rule in app.url_map.iter_rules():
     print(rule)
 
+# Percorso relativo per il database nella cartella del progetto
+db_path = os.path.join(os.getcwd(), 'bookings.db')
+
 if __name__ == '__main__':
     # Usa la variabile d'ambiente PORT che viene passata da Render
     port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
@@ -32,7 +35,7 @@ if __name__ == '__main__':
 
 # Funzione per connettersi al database SQLite
 def get_db_connection():
-    conn = sqlite3.connect('bookings.db')  # File del database SQLite
+    conn = sqlite3.connect(db_path)  # Usa il percorso relativo per il database
     conn.row_factory = sqlite3.Row  # Per poter accedere alle colonne come dizionari
     return conn
     
