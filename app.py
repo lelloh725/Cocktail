@@ -28,10 +28,7 @@ for rule in app.url_map.iter_rules():
 # Percorso relativo per il database nella cartella del progetto
 db_path = os.path.join(os.getcwd(), 'bookings.db')
 
-if __name__ == '__main__':
-    # Usa la variabile d'ambiente PORT che viene passata da Render
-    port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
-    app.run(host='0.0.0.0', port=port, debug=True)
+
 
 # Funzione per connettersi al database SQLite
 def get_db_connection():
@@ -144,6 +141,11 @@ def cancel_booking(id):
     conn.close()
 
     return jsonify({'message': 'Prenotazione cancellata con successo!'}), 200
+
+if __name__ == '__main__':
+    # Usa la variabile d'ambiente PORT che viene passata da Render
+    port = int(os.environ.get("PORT", 5000))  # Usa 5000 come fallback in locale
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
 
