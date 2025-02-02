@@ -35,9 +35,11 @@ def get_db_connection():
     conn = sqlite3.connect('bookings.db')  # File del database SQLite
     conn.row_factory = sqlite3.Row  # Per poter accedere alle colonne come dizionari
     return conn
+    
 
 # Funzione per creare la tabella (se non esiste)
 def create_table():
+    print("Creating the table...")
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
